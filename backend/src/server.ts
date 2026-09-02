@@ -2,9 +2,18 @@ import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 const port = 3000;
+const allowedOrigins = new Set([
+  "http://localhost:5173",
+  "http://localhost:5174"
+]);
 
 app.use((request: Request, response: Response, next: NextFunction) => {
-  response.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  const origin = request.headers.origin;
+
+  if (origin && allowedOrigins.has(origin)) {
+    response.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
   response.setHeader("Access-Control-Allow-Headers", "Content-Type");
   response.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
 

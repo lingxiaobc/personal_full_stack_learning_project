@@ -27,6 +27,12 @@ function App() {
     event.preventDefault();
 
     const payload = { name };
+    console.log("[前端 2] 准备发送 Request：", {
+      method: "POST",
+      url: API_URL,
+      payload
+    });
+
     setRequestPayload(payload);
     setResponseData(null);
     setResponseStatus(null);
@@ -42,20 +48,29 @@ function App() {
         body: JSON.stringify(payload)
       });
 
+      console.log("[前端 3] 收到 HTTP Response：", {
+        status: response.status,
+        ok: response.ok
+      });
+
       const data: ResponseData = await response.json();
+      console.log("[前端 4] 解析后的 Response Body：", data);
       setResponseStatus(response.status);
       setResponseData(data);
 
       if (!response.ok) {
         setStatus("error");
+        console.log("[前端 5] 根据错误响应更新页面：", data.error ?? "请求失败");
         setMessage(data.error ?? "请求失败");
         return;
       }
 
       setStatus("success");
+      console.log("[前端 5] 根据成功响应更新页面：", data.message);
       setMessage(data.message ?? "后端没有返回 message");
     } catch (error) {
       setStatus("error");
+      console.error("[前端错误] fetch 请求失败：", error);
       setMessage("无法连接后端，请确认后端运行在 3000 端口。");
       setResponseData({
         error: error instanceof Error ? error.message : "Unknown network error"
@@ -104,7 +119,11 @@ function App() {
             <input
               id="name"
               value={name}
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => {
+                const nextName = event.target.value;
+                console.log("[前端 1] 输入框内容变化：", nextName);
+                setName(nextName);
+              }}
               placeholder="例如：张三"
             />
             <button type="submit" disabled={isLoading}>
