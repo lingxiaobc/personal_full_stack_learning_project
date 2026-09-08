@@ -26,6 +26,16 @@ function App() {
   async function sendName(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (!name.trim()) {
+      console.log("[前端校验] 阻止请求：姓名不能为空");
+      setRequestPayload(null);
+      setResponseData(null);
+      setResponseStatus(null);
+      setStatus("error");
+      setMessage("前端校验：姓名不能为空");
+      return;
+    }
+
     const payload = { name };
     console.log("[前端 2] 准备发送 Request：", {
       method: "POST",
