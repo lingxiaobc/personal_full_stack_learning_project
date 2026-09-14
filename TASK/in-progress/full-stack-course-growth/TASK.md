@@ -13,7 +13,7 @@ routing_mode: auto
 selected_modules: M-01,M-02,M-03,M-04,M-07,M-08
 execution_status: IN_PROGRESS
 created_at: 2026-09-08
-updated_at: 2026-09-08
+updated_at: 2026-09-14
 ---
 
 ## 任务目标与批准快照
@@ -21,7 +21,7 @@ updated_at: 2026-09-08
 - 目标：交付一份可逐课执行、以证据验收的全栈软件工程师成长课程安排，并保留后续课程学习的依赖与恢复边界。
 - 主要诊断：如果学习者只复现 AI 的成功操作，就可能无法在陌生故障中识别数据停在哪一层；增加功能不会自动形成可迁移的工程判断。
 - 指导方针：沿一个项目逐层增加主要复杂性；每课经过解释、证据、迁移、验证与恢复四项验收后推进；AI 修改代码，学习者审查 diff 并先做判断。
-- 近端目标：完成课程文档交付、结构校验与 Git 提交；后续课程从入门短测和 L08 字段契约实验开始。
+- 近端目标：完成 L09 请求失败分类的首轮实作，建立请求构造、连接、HTTP 状态与响应解析的可复现证据链。
 - 主动不做：不在本轮执行 48 节课程、不安装依赖、不修改业务代码、不发布、不使用真实数据或外部写入。
 - 批准依据：用户已批准 PT-full-stack-growth v1 全部步骤，并明确要求检查无误后提交 Git。
 - 路由快照：routing_mode=auto；风险等级=标准；不可逆性=可逆；课程主链按先修顺序串行推进。
@@ -30,7 +30,7 @@ updated_at: 2026-09-08
 
 ## 变更范围
 
-- 涉及模块或目录：COURSE_PLAN.md、docs/full-stack-course-design-plan.md、TASK/pending/full-stack-course-growth/、TASK/in-progress/full-stack-course-growth/、TASK/completed/full-stack-course-growth/。
+- 涉及模块或目录：COURSE_PLAN.md、docs/full-stack-course-design-plan.md、learning/、TASK/pending/full-stack-course-growth/、TASK/in-progress/full-stack-course-growth/、TASK/completed/full-stack-course-growth/。
 - 预计影响文件数：4 个交付文档文件（课程课表、批准方案、PLAN.md、TASK.md）；Git 提交记录另计。
 - 允许的工具与权限：在当前项目目录读取和写入 Markdown；使用 apply_patch、本地 Python 计划校验器、Git status/diff/add/commit。
 - 禁止或需另行批准：依赖安装、应用代码修改、数据库与真实数据、外部发送、部署发布、破坏性 Git 操作；未来课程实验按每课授权。
@@ -46,15 +46,27 @@ updated_at: 2026-09-08
 
 ## 任务明细
 
-- [ ] T-01 | A-01 | 按当前项目与既有会话核对学习起点并执行入门短测 | output: 有记录的入门测评与需要补课的维度 | acceptance: 能定位入口并解释一次输入到响应，且已接触内容没有被直接标为掌握
+- [x] T-01 | A-01 | 按当前项目与既有会话核对学习起点并执行入门短测 | output: 有记录的入门测评与需要补课的维度 | acceptance: 能定位入口并解释一次输入到响应，且已接触内容没有被直接标为掌握
 - [ ] T-02 | A-02 | 按课程先修顺序开展共同主线并保存阶段产物 | output: 48 节课程记录与九个阶段交付证据 | acceptance: 每节课的解释、证据、迁移、验证与恢复四项均通过，且未绕过先修关卡
 - [ ] T-03 | A-03 | 用未提前透露根因的变式题和毕业项目复测迁移能力 | output: 诊断记录、复测结果与毕业证据包 | acceptance: 陌生需求和故障能由学习者先判断、取证、验证与复述，不能由 AI 代答充数
 - [ ] T-04 | A-04 | 在共同主线通过后选择一个方向并完成三课递进作品 | output: 一个方向的三课作品与取舍记录 | acceptance: 方向课程及综合关卡通过，并能解释新增复杂性的收益与维护成本
+- [x] T-05 | A-02 | 执行 L08 字段契约实验并恢复后端读取字段 | output: 字段失配 400、字段恢复 200 的请求与日志证据 | acceptance: 前端 Payload 保持 name，故障时 POST 返回 400 且后端 req.body 有 name；恢复后同样输入返回 200
+- [x] T-06 | A-02 | 完成 L08 类型/请求路径变式的独立复测 | output: `learning/L08-api-contract.md`、故障恢复后的构建与 API 回归证据 | acceptance: 在未查看 diff 的前提下定位前端 payload 构造故障；恢复后正常请求为 200、数值类型请求为 400、构建通过
+- [ ] T-07 | A-02 | 执行 L09 首轮错误分类实作 | output: 可复现的请求构造、连接、HTTP 状态与响应解析证据 | acceptance: 能独立区分请求构造失败、无可用 Response、HTTP 失败与响应解析失败；在正常响应、HTTP 失败和解析失败路径分别验证
 
 ## 发现与变更记录
 
 - 2026-09-08 | 用户批准 PT-full-stack-growth v1，并授权课程文档交付、验证与 Git 提交；后续课程学习尚未开始。
 - 2026-09-08 | state: PENDING -> IN_PROGRESS | reason: 开始或恢复执行
+- 2026-09-14 | L08 训练：临时将后端读取字段改为 username；用户通过 Chrome Network/Console 观察到 name Payload 到达后端但 POST 返回 400；随后已恢复为 name。
+- 2026-09-14 | T-01 | evidence: type=manual; locator=用户在当前对话回答 L01-L07 空白字符等价变式（2026-09-14）; result=能解释页面空白输入无 POST、直接空白请求后端返回 400，以及非空请求返回 200。
+- 2026-09-14 | T-05 | evidence: type=manual; locator=用户在本对话提供的 Chrome Network 与 Console 截图（2026-09-14）; result=故障期间 Request Payload 为 name，POST /api/hello 返回 400，Response 含 name is required 与 received.name。
+- 2026-09-14 | T-05 | evidence: type=command; locator=PowerShell Invoke-WebRequest POST http://localhost:3000/api/hello with JSON name Lenox Shawn; result=恢复后返回 HTTP 200，响应体含 message 和 receivedName。
+- 2026-09-14 | L08 | evidence: type=manual; locator=用户在本对话提供的 Chrome Network/Console 截图（Console POST body 为 { name: 123 }）; result=直接 Console 请求返回 HTTP 400 和 JSON 错误体，页面表单输入 123 则以字符串 "123" 单独发送并返回 HTTP 200；已识别同一路径的请求体类型可以不同。
+- 2026-09-14 | L09-prep | evidence: type=manual; locator=用户在本对话提供的 Chrome Console 截图（GET 方法仍携带 body）; result=Fetch API 在发送前抛出 TypeError: Request with GET/HEAD method cannot have body，并进入 catch；尚未把错误端口、404 和非 JSON 解析作为实作证据记录。
+- 2026-09-14 | T-06 | evidence: type=manual; locator=用户在当前对话提交的无提示复测诊断（输入 Lenox、Network Payload 为 { name: 123 }、HTTP 400）; result=在未查看源码或 diff 前，正确将最早异常定位为前端构造 payload，并优先选择 frontend/src/App.tsx 约第 40 行检查。
+- 2026-09-14 | T-06 | evidence: type=command; locator=npm.cmd run build + localhost POST smoke requests; result=恢复后前后端构建均通过；{ name: "Lenox" } 返回 HTTP 200 和 receivedName=Lenox，{ name: 123 } 返回 HTTP 400 和 error=name is required。
+- 2026-09-14 | learning-record | locator=learning/L08-api-contract.md; result=L08 已通过：无提示类型变式的根因已正确定位，临时前端故障已恢复，正常与异常 API 回归完成；L09 保持学习中。
 
 ## 完成标准
 
