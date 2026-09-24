@@ -49,8 +49,9 @@ function App() {
     setMessage("");
     setStatus("loading");
 
+    let response: Response;
     try {
-      const response = await fetch(API_URL, {
+      response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -63,9 +64,25 @@ function App() {
         ok: response.ok
       });
 
-      const data: ResponseData = await response.json();
-      console.log("[前端 4] 解析后的 Response Body：", data);
       setResponseStatus(response.status);
+
+      let data: ResponseData;
+      try {
+        data = await response.json();
+      } catch (error) {
+        setStatus("error");
+        console.error("[前端错误] 已收到 HTTP Response，但 JSON 解析失败：", error);
+        const contentType = response.headers.get("content-type") ?? "未知";
+        setMessage(
+          `已收到 HTTP ${response.status} 响应，但响应体无法解析为 JSON（Content-Type: ${contentType}）。`
+        );
+        setResponseData({
+          error: error instanceof Error ? error.message : "Invalid JSON response"
+        });
+        return;
+      }
+
+      console.log("[前端 4] 解析后的 Response Body：", data);
       setResponseData(data);
 
       if (!response.ok) {
@@ -80,8 +97,8 @@ function App() {
       setMessage(data.message ?? "后端没有返回 message");
     } catch (error) {
       setStatus("error");
-      console.error("[前端错误] fetch 请求失败：", error);
-      setMessage("无法连接后端，请确认后端运行在 3000 端口。");
+      console.error("[前端错误] 没有收到 HTTP Response，fetch 请求失败：", error);
+      setMessage("请求失败：没有收到 HTTP 响应，请检查接口地址、端口或请求配置。");
       setResponseData({
         error: error instanceof Error ? error.message : "Unknown network error"
       });

@@ -4,7 +4,9 @@ const app = express();
 const port = 3000;
 const allowedOrigins = new Set([
   "http://localhost:5173",
-  "http://localhost:5174"
+  "http://localhost:5174",
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:5174"
 ]);
 
 app.use((request: Request, response: Response, next: NextFunction) => {
@@ -52,6 +54,14 @@ app.post("/api/hello", (request: Request, response: Response) => {
 
   console.log("后端返回的数据：", successResponse);
   response.json(successResponse);
+});
+
+app.post("/api/hello-text", (request: Request, response: Response) => {
+  console.log("文本响应实验收到请求：", request.method, request.path);
+  console.log("Request Content-Type：", request.headers["content-type"]);
+  console.log("后端收到的数据 req.body：", request.body);
+
+  response.status(200).type("text/plain").send("OK");
 });
 
 app.listen(port, () => {
