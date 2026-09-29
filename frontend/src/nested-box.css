@@ -1,0 +1,200 @@
+.nested-lab {
+  max-width: 1220px;
+  margin: 26px auto 28px;
+}
+
+.nested-intro h2 {
+  font-size: 1.45rem;
+}
+
+.nested-intro > p:not(.box-lab-eyebrow),
+.nested-scroll-tip,
+.nested-takeaway {
+  color: #c9d5e9;
+  line-height: 1.6;
+}
+
+.nested-intro .box-lab-eyebrow { margin-top: 0; }
+
+.nested-dom {
+  display: block;
+  margin: 12px 0 18px;
+  padding: 12px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #081221;
+  color: #e4ecff;
+  white-space: pre-wrap;
+}
+
+.nested-preview-scroll {
+  overflow-x: auto;
+  border: 1px dashed #617590;
+  border-radius: 12px;
+  background: #081221;
+  padding: 16px;
+}
+
+.nested-stage {
+  display: flow-root;
+  width: max-content;
+  background: repeating-linear-gradient(45deg, #b96b28 0 14px, #eea24c 14px 28px);
+}
+
+.nested-parent,
+.nested-child {
+  box-sizing: content-box;
+  display: flow-root;
+  border-style: solid;
+}
+
+.nested-parent {
+  border-color: #f16abb;
+  background-image: linear-gradient(#168981, #168981), linear-gradient(#729dff, #729dff);
+  background-origin: content-box, padding-box;
+  background-clip: content-box, padding-box;
+}
+
+.nested-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: #c0e85c;
+  outline: 2px dashed #f4f7ff;
+  background-image: linear-gradient(#ffe07b, #ffe07b), linear-gradient(#b58bf1, #b58bf1);
+  background-origin: content-box, padding-box;
+  background-clip: content-box, padding-box;
+  color: #172238;
+  font-weight: 800;
+  text-align: center;
+}
+
+.nested-scroll-tip { margin: 8px 0 16px; font-size: 0.85rem; }
+
+.nested-inspector-tip {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-left: 4px solid #9bb1ff;
+  border-radius: 6px;
+  background: #1c3050;
+  color: #e0e9f7;
+  line-height: 1.6;
+}
+
+.nested-inspector-tip code { color: #ffe07b; }
+
+.nested-legend,
+.nested-control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.nested-legend > div {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #3b5272;
+  border-radius: 10px;
+  background: #172a44;
+}
+
+.nested-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d9e3f4;
+  font-size: 0.85rem;
+}
+
+.nested-key {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e1e8f6;
+  border-radius: 3px;
+}
+
+.nested-key-parent-margin { background: repeating-linear-gradient(45deg, #b96b28 0 5px, #eea24c 5px 10px); }
+.nested-key-parent-border { background: #f16abb; }
+.nested-key-parent-padding { background: #729dff; }
+.nested-key-parent-content,
+.nested-key-child-margin { background: #168981; }
+.nested-key-child-border { background: #c0e85c; }
+.nested-key-child-padding { background: #b58bf1; }
+.nested-key-child-content { background: #ffe07b; }
+
+.nested-control-grid { margin-top: 18px; }
+
+.nested-controls {
+  padding: 18px;
+  border: 1px solid #3b5272;
+  border-radius: 10px;
+  background: #172a44;
+}
+
+.nested-controls-parent { border-top: 4px solid #f16abb; }
+.nested-controls-child { border-top: 4px solid #c0e85c; }
+
+.nested-controls h3 {
+  margin: 0 0 16px;
+  font-size: 1.06rem;
+}
+
+.nested-controls h3 code { color: #d4e0f7; font-size: 0.8rem; }
+
+.nested-slider {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 10px;
+  margin: 0 0 14px;
+  color: #eaf0ff;
+}
+
+.nested-slider output { font-variant-numeric: tabular-nums; }
+
+.nested-slider input {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  accent-color: #a5b8ff;
+}
+
+.nested-controls-parent .nested-slider input { accent-color: #f16abb; }
+.nested-controls-child .nested-slider input { accent-color: #c0e85c; }
+
+.nested-size {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid #3b5272;
+}
+
+.nested-size strong { color: #ffe07b; }
+.nested-size small { display: block; margin-top: 5px; color: #b8c7dc; line-height: 1.5; }
+
+.nested-takeaway {
+  margin: 18px 0 0;
+  padding: 14px;
+  border-left: 4px solid #9bb1ff;
+  border-radius: 6px;
+  background: #1c3050;
+}
+
+.nested-takeaway strong { color: #f4f7ff; }
+
+.nested-reset {
+  margin-top: 16px;
+  padding: 11px 14px;
+  border: 1px solid #829bff;
+  border-radius: 8px;
+  background: #243959;
+  color: #f4f7ff;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .nested-legend,
+  .nested-control-grid { grid-template-columns: 1fr; }
+}
