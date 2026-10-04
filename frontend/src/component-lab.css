@@ -1,0 +1,290 @@
+.component-lab {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 42px 0 70px;
+  color: #edf4ff;
+}
+
+.component-lab h1,
+.component-lab h2,
+.component-lab p {
+  margin-top: 0;
+}
+
+.component-lab-header {
+  max-width: 850px;
+  margin-bottom: 28px;
+}
+
+.component-lab-header a {
+  color: #a7bdff;
+}
+
+.component-lab-eyebrow {
+  margin: 28px 0 10px;
+  color: #9eb4ff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.component-lab-header h1 {
+  margin-bottom: 14px;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+}
+
+.component-lab-header > p:last-child,
+.component-lab-parent-heading p,
+.component-lab-child p,
+.component-lab-definitions p,
+.component-lab-inspect {
+  color: #c2d1e6;
+  line-height: 1.65;
+}
+
+.component-lab-parent,
+.component-lab-explanation,
+.component-lab-inspect {
+  margin-top: 24px;
+  padding: 26px;
+  border: 1px solid #3e5a82;
+  border-radius: 22px;
+  background: #0e1d33;
+}
+
+.component-lab-parent {
+  border: 2px solid #b99bff;
+  box-shadow: inset 0 0 0 5px rgba(185, 155, 255, 0.08);
+}
+
+.component-lab-parent-heading h2 {
+  margin: 10px 0 8px;
+}
+
+.component-lab-parent-heading p {
+  margin-bottom: 0;
+}
+
+.component-lab-badge,
+.component-lab-type {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #442c69;
+  color: #f1e6ff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.component-lab-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin: 22px 0;
+  padding: 13px;
+  border: 1px dashed #8d80ba;
+  border-radius: 10px;
+  color: #e6dfff;
+}
+
+.component-lab-flow span {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #273b5f;
+}
+
+.component-lab-flow b {
+  color: #b99bff;
+  font-size: 0.85rem;
+}
+
+.component-lab-children,
+.component-lab-definitions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.component-lab-child {
+  min-width: 0;
+  padding: 19px;
+  border: 3px solid;
+  border-radius: 15px;
+  background: #142740;
+}
+
+.component-lab-input {
+  border-color: #6aaaff;
+}
+
+.component-lab-output {
+  border-color: #59dbc4;
+}
+
+.component-lab-static {
+  border-color: #ffcb70;
+}
+
+.component-lab-counter {
+  border-color: #ff98bb;
+}
+
+.component-lab-child-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.component-lab-child-heading code {
+  font-weight: 700;
+}
+
+.component-lab-child p {
+  margin: 14px 0 0;
+}
+
+.component-lab-child label,
+.component-lab-small-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #adbfda;
+  font-size: 0.85rem;
+}
+
+.component-lab-child input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #809cca;
+  border-radius: 9px;
+  background: #f1f6ff;
+  color: #10213d;
+}
+
+.component-lab-child input:focus-visible,
+.component-lab-child button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.component-lab-child .component-lab-greeting {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.component-lab-trace {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid #55759b;
+  border-radius: 10px;
+  background: #0a1729;
+}
+
+.component-lab-parent-trace {
+  margin-top: 18px;
+  border-color: #a78cda;
+}
+
+.component-lab-trace > strong {
+  display: block;
+  margin-bottom: 9px;
+  color: #fff;
+}
+
+.component-lab-trace > p {
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+}
+
+.component-lab-trace-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 9px 0;
+  border-top: 1px solid #2c4564;
+  font-size: 0.81rem;
+}
+
+.component-lab-trace-row code {
+  overflow-wrap: anywhere;
+  color: #a9ebdc;
+}
+
+.component-lab-trace-row output {
+  overflow-wrap: anywhere;
+  color: #ffe39f;
+  font-weight: 700;
+}
+
+.component-lab-counter button {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #ffb4cc;
+  color: #271323;
+  font-weight: 800;
+}
+
+.component-lab-explanation h2,
+.component-lab-inspect h2 {
+  margin-bottom: 18px;
+}
+
+.component-lab-definitions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.component-lab-definitions article {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #355171;
+  border-radius: 12px;
+  background: #0a1628;
+}
+
+.component-lab-definitions pre {
+  overflow-x: auto;
+  min-height: 125px;
+  margin: 13px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #050d1b;
+  color: #a9ebdc;
+  font-size: 0.77rem;
+  line-height: 1.5;
+}
+
+.component-lab-definitions p {
+  margin-bottom: 0;
+}
+
+.component-lab-inspect ol {
+  margin-bottom: 16px;
+  padding-left: 22px;
+}
+
+.component-lab-inspect li + li {
+  margin-top: 10px;
+}
+
+.component-lab-inspect p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 820px) {
+  .component-lab-children,
+  .component-lab-definitions {
+    grid-template-columns: 1fr;
+  }
+
+  .component-lab-trace-row {
+    grid-template-columns: 1fr;
+  }
+}
