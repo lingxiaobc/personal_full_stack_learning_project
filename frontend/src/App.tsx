@@ -15,6 +15,44 @@ type ResponseData = {
 
 type RequestStatus = "idle" | "loading" | "success" | "error";
 
+type NameFormProps = {
+  name: string;
+  isLoading: boolean;
+  onNameChange: (nextName: string) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+};
+
+function NameForm({ name, isLoading, onNameChange, onSubmit }: NameFormProps) {
+  return (
+    <form onSubmit={onSubmit}>
+      <label htmlFor="name">姓名</label>
+      <input
+        id="name"
+        value={name}
+        onChange={(event) => onNameChange(event.target.value)}
+        placeholder="例如：张三"
+      />
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "发送中…" : "发送给后端"}
+      </button>
+    </form>
+  );
+}
+
+type ResultViewProps = {
+  status: RequestStatus;
+  message: string;
+};
+
+function ResultView({ status, message }: ResultViewProps) {
+  return (
+    <div className={`result ${status}`} aria-live="polite">
+      <span className="result-label">页面当前结果</span>
+      <strong>{message || "等待后端返回…"}</strong>
+    </div>
+  );
+}
+
 function App() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -22,6 +60,11 @@ function App() {
   const [requestPayload, setRequestPayload] = useState<RequestPayload | null>(null);
   const [responseData, setResponseData] = useState<ResponseData | null>(null);
   const [responseStatus, setResponseStatus] = useState<number | null>(null);
+
+  function handleNameChange(nextName: string) {
+    console.log("[前端 1] 输入框内容变化：", nextName);
+    setName(nextName);
+  }
 
   async function sendName(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -141,27 +184,14 @@ function App() {
             <span className={`status-dot ${status}`} aria-label={`请求状态：${status}`} />
           </div>
 
-          <form onSubmit={sendName}>
-            <label htmlFor="name">姓名</label>
-            <input
-              id="name"
-              value={name}
-              onChange={(event) => {
-                const nextName = event.target.value;
-                console.log("[前端 1] 输入框内容变化：", nextName);
-                setName(nextName);
-              }}
-              placeholder="例如：张三"
-            />
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "发送中…" : "发送给后端"}
-            </button>
-          </form>
+          <NameForm
+            name={name}
+            isLoading={isLoading}
+            onNameChange={handleNameChange}
+            onSubmit={sendName}
+          />
 
-          <div className={`result ${status}`} aria-live="polite">
-            <span className="result-label">页面当前结果</span>
-            <strong>{message || "等待后端返回…"}</strong>
-          </div>
+          <ResultView status={status} message={message} />
         </div>
 
         <div className="panel inspect-panel">
